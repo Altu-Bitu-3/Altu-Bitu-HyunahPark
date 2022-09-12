@@ -5,6 +5,21 @@
 
 using namespace std;
 
+long long calculateTip(vector<int> &arr)
+{
+  long long tip = 0;
+
+  for (int i = 0; i < arr.size(); i++)
+  {
+    if (arr[i] <= i)
+    {
+      return tip;
+    }
+    tip += (arr[i] - i);
+  }
+  return tip;
+}
+
 int main()
 {
 
@@ -20,15 +35,5 @@ int main()
 
   sort(arr.begin(), arr.end(), greater<>());
 
-  long long tip = 0;
-
-  for (int i = 0; i < n; i++)
-  {
-    if (arr[i] > i)
-    {
-      tip += (arr[i] - i);
-    }
-  }
-
-  cout << tip;
+  cout << calculateTip(arr);
 }
