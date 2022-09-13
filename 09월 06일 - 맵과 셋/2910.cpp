@@ -10,9 +10,9 @@ map<int, int> num_orders;
 
 bool cmp(const ci &a, const ci &b)
 {
-  if (a.second == b.second)
-    return num_orders[a.first] < num_orders[b.first];
-  return a.second > b.second;
+  if (a.second != b.second)
+    return a.second > b.second;
+  return num_orders[a.first] < num_orders[b.first];
 }
 
 int main()
@@ -27,15 +27,12 @@ int main()
     int input;
     cin >> input;
 
-    if (num_pairs.count(input))
+    if (!num_pairs.count(input))
     {
-      num_pairs[input]++;
+      num_orders[input] = i;
     }
-    else
-    {
-      num_pairs.insert({input, 1});
-      num_orders.insert({input, i});
-    }
+
+    num_pairs[input]++;
   }
 
   vector<ci> vec(num_pairs.begin(), num_pairs.end());
