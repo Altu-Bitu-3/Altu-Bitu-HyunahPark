@@ -9,9 +9,8 @@ const int SIZE = 8;
 
 int n, m;
 vector<int> nums(SIZE);   //숫자 저장
-vector<int> counts(MAX);  //숫자별 개수 저장
+vector<int> counts(MAX);  //숫자별 사용할 수 있는 개수 저장
 vector<int> output(SIZE); //출력할 조합 저장
-vector<int> check(MAX);   //숫자별 선택한 횟수 저장
 
 void backtracking(int cnt)
 {
@@ -31,14 +30,13 @@ void backtracking(int cnt)
   {
     int k = nums[i];
 
-    //해당 숫자를 입력받은 횟수보다 더 적게 선택한 경우
-    //출력할 숫자 수보다 같은 숫자를 선택한 횟수가 적은 경우(같은 숫자를 더 선택할 수 있음)
-    if (check[k] < counts[k] && check[k] < m)
+    //해당 숫자를 사용할 수 있는 경우
+    if (counts[k])
     {
       output[cnt] = k;
-      check[k]++;
+      counts[k]--;
       backtracking(cnt + 1);
-      check[k]--;
+      counts[k]++;
     }
   }
 }
