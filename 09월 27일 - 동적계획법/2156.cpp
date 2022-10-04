@@ -12,7 +12,7 @@ int calc(int n, vector<int> &inputs)
 
   for (int i = 3; i <= n; i++)
   {
-    dp[i] = max(dp[i - 2] + inputs[i], dp[i - 1]);
+    dp[i] = max(max(dp[i - 2] + inputs[i], dp[i - 1]),dp[i-3]+inputs[i-1]+inputs[i]);
   }
 
   return dp[n];
